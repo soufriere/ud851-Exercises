@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO (26)X Create an EditText variable called mSearchBoxEditText
 
-    private EditText mSearchBoxEditText;
-    private TextView mUrlDisplayTextView;
-    private TextView mSearchResultsTextView;
+     EditText mSearchBoxEditText;
+     TextView mUrlDisplayTextView;
+     TextView mSearchResultsTextView;
 
     // TODO (27)X Create a TextView variable called mUrlDisplayTextView
     // TODO (28)X Create a TextView variable called mSearchResultsTextView

@@ -42,7 +42,7 @@
         android:textSize="22sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter a query and then click search."/>
+        android:hint="Enter a query and then click search."/>
 
     <!--TODO (12)X Add a TextView-->
     <!--TODO (13)X Give the TextView an id of @+id/tv_url_display-->
