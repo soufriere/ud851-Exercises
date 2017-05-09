@@ -15,17 +15,13 @@
  */
 package com.example.android.datafrominternet;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.android.datafrominternet.utilities.NetworkUtils;
-
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
     }
 
-    void makeGithubSearchQuery {
-        URL searchURL = new URL(NetworkUtils.buildUrl(mSearchBoxEditText.toString()).toString());
-        mUrlDisplayTextView.setText(searchURL);
+    private void makeGithubSearchQuery() {
+        String githubQuery = mSearchBoxEditText.getText().toString();
+        URL searchURL = NetworkUtils.buildUrl(githubQuery);
+        mUrlDisplayTextView.setText(searchURL.toString());
 
     }
 
@@ -68,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
         if (itemThatWasClickedId == R.id.action_search) {
             // TODO (4) X Remove the Toast message when the search menu item is clicked
             // TODO (5) X Call makeGithubSearchQuery when the search menu item is clicked
-            makeGithubSearchQuery;
+            makeGithubSearchQuery();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

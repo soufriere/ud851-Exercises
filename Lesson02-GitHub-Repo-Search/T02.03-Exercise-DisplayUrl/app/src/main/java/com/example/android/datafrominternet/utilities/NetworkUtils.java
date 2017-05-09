@@ -16,7 +16,7 @@
 package com.example.android.datafrominternet.utilities;
 
 import android.net.Uri;
-
+import java.net.MalformedURLException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -54,7 +54,14 @@ public class NetworkUtils {
                 .appendQueryParameter(PARAM_SORT, sortBy)
                 .build();
 
-        return null;
+        URL url = null;
+
+                try {
+                        url = new URL(builtUri.toString());
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+        return url;
     }
 
     /**
