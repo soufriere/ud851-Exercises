@@ -18,10 +18,13 @@ package com.example.android.recyclerview;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * We couldn't come up with a good name for this class. Then, we realized
@@ -119,6 +122,21 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     // TODO (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
 
+    class NumberViewHolder extends RecyclerView.ViewHolder {
+        TextView listItemNumberView;
+
+        public NumberViewHolder(View itemView) {
+            super(itemView);
+            listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+        }
+
+        void bind(int listIndex) {
+            //IMPORTANT: if we give the integer directly, android will assume it's a string resource,
+            //That's why we use valueOf
+            listItemNumberView.setText(String.valueOf(listIndex));
+        }
+
+    }
     // TODO (13) Within NumberViewHolder, create a TextView variable called listItemNumberView
 
     // TODO (14) Create a constructor for NumberViewHolder that accepts a View called itemView as a parameter
@@ -128,5 +146,5 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     // TODO (17) Within bind, set the text of listItemNumberView to the listIndex
     // TODO (18) Be careful to get the String representation of listIndex, as using setText with an int does something different
 
-    }
+
 }
