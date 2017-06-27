@@ -94,6 +94,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     }
 
     // TODO (1) Add an interface called ListItemClickListener
+
     // TODO (2) Within that interface, define a void method called onListItemClick that takes an int as a parameter
 
     // TODO (4) Add a ListItemClickListener as a parameter to the constructor and store it in mOnClickListener
@@ -210,7 +211,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
         @Override
         public void onClick(View view) {
-            int clickedPosition = getAdapterPosition();
+            int clickedPosition = getAdapterPosition(); // this is the item that was clicked
             mOnClickListener.onListItemClick(clickedPosition);
         }
         // TODO (6) Override onClick, passing the clicked item's position (getAdapterPosition()) to mOnClickListener via its onListItemClick method
