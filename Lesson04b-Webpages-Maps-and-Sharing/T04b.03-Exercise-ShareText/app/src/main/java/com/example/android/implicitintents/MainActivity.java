@@ -52,11 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo")
-                .path("0,0")
+                .path("0,0") //this is obligatory if an address string is included
                 .query(addressString);
         Uri addressUri = builder.build();
 
-        showMap(addressUri);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(addressUri);
+        if (intent.resolveActivity(getPackageManager()) != null)  {
+            startActivity(intent);
+        }
+
     }
 
     /**

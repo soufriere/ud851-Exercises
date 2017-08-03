@@ -111,14 +111,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showMap(Uri uri) {
 
-    // TODO (1) Create a method called showMap with a Uri as the single parameter
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(uri);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+    }
+
+    // DONE (1) Create a method called showMap with a Uri as the single parameter
     // Do steps 2 - 4 within the showMap method
-        // TODO (2) Create an Intent with action type, Intent.ACTION_VIEW
+        // DONE (2) Create an Intent with action type, Intent.ACTION_VIEW
 
-        // TODO (3) Set the data of the Intent to the Uri passed into this method
+        // DONE (3) Set the data of the Intent to the Uri passed into this method
 
-        // TODO (4) Verify that this Intent can be launched and then call startActivity
+        // DONE (4) Verify that this Intent can be launched and then call startActivity
 
 
 }
