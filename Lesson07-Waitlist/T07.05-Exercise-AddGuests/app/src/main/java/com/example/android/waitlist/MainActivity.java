@@ -20,10 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
     private GuestListAdapter mAdapter;
     private SQLiteDatabase mDb;
+    public static final String LOG_TAG = "JIM";
+
+
 
     // TODO (1) Create local EditText members for mNewGuestNameEditText and mNewPartySizeEditText
 
     // TODO (13) Create a constant string LOG_TAG that is equal to the class.getSimpleName()
+
+    private EditText mNewGuestNameEditText;
+    private EditText mNewPartySizeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO (2) Set the Edit texts to the corresponding views using findViewById
 
+        mNewGuestNameEditText = (EditText) findViewById(R.id.person_name_edit_text);
+        mNewPartySizeEditText = (EditText) findViewById(R.id.party_count_edit_text);
+
         // Set layout for the RecyclerView, because it's a list we are using the linear layout
         waitlistRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -49,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mDb = dbHelper.getWritableDatabase();
 
         // TODO (3) Remove this fake data call since we will be inserting our own data now
-        TestUtil.insertFakeData(mDb);
+        //TestUtil.insertFakeData(mDb);
 
         // Get all guest info from the database and save in a cursor
         Cursor cursor = getAllGuests();
@@ -70,10 +79,21 @@ public class MainActivity extends AppCompatActivity {
     public void addToWaitlist(View view) {
 
         // TODO (9) First thing, check if any of the EditTexts are empty, return if so
-
+        if (mNewGuestNameEditText.getText().length() == 0 ||
+        mNewPartySizeEditText.getText().length() == 0) {
+            return;
+        }
         // TODO (10) Create an integer to store the party size and initialize to 1
-
+        int partySize = 1;
         // TODO (11) Use Integer.parseInt to parse mNewPartySizeEditText.getText to an integer
+        try {
+            partySize = Integer.parseInt(mNewPartySizeEditText.getText().toString());
+        } catch (Exception ex) {
+            Log.e(LOG_TAG, ex.getMessage());
+        }
+
+        addGuest(mNewGuestNameEditText.getText().toString(), partySize);
+
 
         // TODO (12) Make sure you surround the Integer.parseInt with a try catch and log any exception
 
@@ -114,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO (8) call insert to run an insert query on TABLE_NAME with the ContentValues created
 
+    private long addGuest(String name, int partySize) {
+        ContentValues cv = new ContentValues();
+        cv.put(WaitlistContract.WaitlistEntry.COLUMN_GUEST_NAME, name);
+        cv.put(WaitlistContract.WaitlistEntry.COLUMN_PARTY_SIZE, partySize);
+        return mDb.insert(WaitlistContract.WaitlistEntry.TABLE_NAME, null, cv);
+    }
 
 
 }
